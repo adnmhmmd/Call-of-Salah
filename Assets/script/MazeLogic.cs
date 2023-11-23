@@ -112,7 +112,7 @@ public class MazeLogic : MonoBehaviour
                 {
                     Debug.Log("placing character");
                     PlayerSet = true;
-                    Character.transform.position = new Vector3(x * scale, 0, z * scale);
+                    Character.transform.position = new Vector3(x * scale, -8, z * scale);
                 }
                 else if (PlayerSet)
                 {

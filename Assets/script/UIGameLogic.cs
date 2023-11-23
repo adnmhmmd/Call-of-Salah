@@ -14,13 +14,15 @@ public class UIGameLogic : MonoBehaviour
     public void UpdateHealthBar(float CurrentHealth, float MaxHealth)
     {
         HealthBar.fillAmount = CurrentHealth / MaxHealth;
-        if(CurrentHealth <= 0) 
+        if (CurrentHealth <= 0)
         {
-        CurrentHealth = 0f;
-        HealthText.text = CurrentHealth.ToString();
-        GameResult(false);
-        }else{
-        HealthText.text = CurrentHealth.ToString();
+            CurrentHealth = 0f;
+            HealthText.text = CurrentHealth.ToString();
+            GameResult(false);
+        }
+        else
+        {
+            HealthText.text = CurrentHealth.ToString();
         }
     }
     // Start is called before the first frame update
@@ -37,7 +39,7 @@ public class UIGameLogic : MonoBehaviour
 
     public void GameResult(bool win)
     {
-        Time.timeScale = 0f;    
+        Time.timeScale = 0f;
         PanelGameResult.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -56,7 +58,11 @@ public class UIGameLogic : MonoBehaviour
 
     public void GameResultDecision(bool TryAgain)
     {
-        if (TryAgain) SceneManager.LoadScene("Maze");
+        if (TryAgain)
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Maze");
+        }
         else SceneManager.LoadScene("Menu");
     }
 }
