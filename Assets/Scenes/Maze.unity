@@ -247,7 +247,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299193859}
-  m_LocalRotation: {x: 0.008181648, y: 0.09052572, z: -0.0007437284, w: 0.9958602}
+  m_LocalRotation: {x: 0.008181647, y: 0.090525635, z: -0.00074372755, w: 0.9958603}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -844,7 +844,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568308161}
-  m_LocalRotation: {x: 0.026246654, y: 0.09049733, z: -0.002385874, w: 0.99554795}
+  m_LocalRotation: {x: 0.026246654, y: 0.0904972, z: -0.0023858706, w: 0.99554795}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1358,8 +1358,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.026246658, y: 0.09049732, z: -0.002385874, w: 0.99554795}
-  m_LocalPosition: {x: 37.295288, y: 4.1400003, z: 1.2458639}
+  m_LocalRotation: {x: 0.026246654, y: 0.09049718, z: -0.0023858706, w: 0.99554795}
+  m_LocalPosition: {x: 37.29529, y: 4.1400003, z: 1.245863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.6666667
+  m_VoxelSize: 2.6666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: b1002f28509003341ab981fc7189f935, type: 2}
 --- !u!4 &1049200462
@@ -1541,7 +1541,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064687021}
-  m_LocalRotation: {x: 0.04435783, y: 0.0886916, z: -0.0039536855, w: 0.9950631}
+  m_LocalRotation: {x: 0.044357855, y: 0.0886912, z: -0.003953668, w: 0.9950631}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3073,7 +3073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450224917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.295288, y: 4.1400003, z: 1.2458639}
+  m_LocalPosition: {x: 37.29529, y: 4.1400003, z: 1.245863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1064687023}
@@ -8075,10 +8075,11 @@ MonoBehaviour:
   depth: 20
   scale: 30
   Cube:
-  - {fileID: 664772185599496671, guid: 74023d312e1092c43a12f8d781f20127, type: 3}
+  - {fileID: 664772185599496671, guid: 9980fb4e67869654fabdf2f39957b643, type: 3}
   Character: {fileID: 435067924}
   Enemy: {fileID: 7234439644998929842, guid: 8f3b6d0e0bddd424e887f543d3529c5a, type: 3}
   Goblin: {fileID: 5986219249805989009, guid: fa043b9b86806fb4a9f6561b140e3774, type: 3}
+  Masjid: {fileID: 664772185599496671, guid: 8e2a53d9e8f0dfc4a93eb960e94802ee, type: 3}
   GoblinCount: 3
   RoomCount: 1
   RoomMinSize: 6
@@ -8119,6 +8120,7 @@ MonoBehaviour:
   Character: {fileID: 435067924}
   Enemy: {fileID: 0}
   Goblin: {fileID: 0}
+  Masjid: {fileID: 0}
   GoblinCount: 3
   RoomCount: 1
   RoomMinSize: 6

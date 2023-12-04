@@ -19,10 +19,10 @@ public class MazeLogic : MonoBehaviour
     public int width = 30, depth = 30;
     public int scale = 15;
     public List<GameObject> Cube;
-    public GameObject Character, Enemy, Goblin;
+    public GameObject Character, Enemy, Goblin, Masjid;
     public int GoblinCount = 3;
     public int RoomCount = 1;
-    public int RoomMinSize = 6;
+    public int RoomMinSize = 10;
     public int RoomMaxSize = 10;
     public NavMeshSurface surface;
     public byte[,] map;
@@ -30,11 +30,12 @@ public class MazeLogic : MonoBehaviour
     void Start()
     {
         InitialiseMap();
-        GenerateMaps();
         AddRooms(RoomCount, RoomMinSize, RoomMaxSize);
+        GenerateMaps();
         DrawMaps();
         PlaceCharacter();
         PlaceEnemy();
+        PlaceMasjid();
         PlaceGoblin();
         surface.BuildNavMesh();
     }
@@ -50,7 +51,7 @@ public class MazeLogic : MonoBehaviour
         map = new byte[width, depth];
         for (int z = 0; z < depth; z++)
         {
-            for (int x = 0; x < depth; x++)
+            for (int x = 0; x < width; x++)
             {
                 map[x, z] = 1;
             }
@@ -61,11 +62,11 @@ public class MazeLogic : MonoBehaviour
     {
         for (int z = 0; z < depth; z++)
         {
-            for (int x = 0; x < depth; x++)
+            for (int x = 0; x < width; x++)
             {
                 if (Random.Range(0, 100) < 50)
                 {
-                    map[z, x] = 0;
+                    map[x, z] = 0;
                 }
             }
         }
@@ -75,9 +76,9 @@ public class MazeLogic : MonoBehaviour
     {
         for (int z = 0; z < depth; z++)
         {
-            for (int x = 0; x < depth; x++)
+            for (int x = 0; x < width; x++)
             {
-                if (map[z, x] == 1)
+                if (map[x, z] == 1)
                 {
                     Vector3 pos = new Vector3(x * scale, 0, z * scale);
                     GameObject wall = Instantiate(Cube[Random.Range(0, Cube.Count)], pos, Quaternion.identity);
@@ -99,6 +100,25 @@ public class MazeLogic : MonoBehaviour
         return count;
     }
 
+    public virtual void AddRooms(int count, int minSize, int maxSize)
+    {
+        for (int c = 0; c < count; c++)
+        {
+            int startX = Random.Range(3, width - 3);
+            int startZ = Random.Range(3, depth - 3);
+            int roomWidth = Random.Range(minSize, maxSize);
+            int roomDepth = Random.Range(minSize, maxSize);
+
+            for (int x = startX; x < startX + roomWidth && x < width - 3; x++)
+            {
+                for (int z = startZ; z < startZ + roomDepth && z < depth - 3; z++)
+                {
+                    map[x, z] = 2;
+                }
+            }
+        }
+    }
+
     public virtual void PlaceCharacter()
     {
         bool PlayerSet = false;
@@ -112,7 +132,7 @@ public class MazeLogic : MonoBehaviour
                 {
                     Debug.Log("placing character");
                     PlayerSet = true;
-                    Character.transform.position = new Vector3(x * scale, -8, z * scale);
+                    Character.transform.position = new Vector3(x * scale, -7, z * scale);
                 }
                 else if (PlayerSet)
                 {
@@ -137,7 +157,7 @@ public class MazeLogic : MonoBehaviour
                     Debug.Log("placing enemy");
                     EnemySet = true;
                     Instantiate(Enemy, new Vector3(x * scale, 0, z * scale), Quaternion.identity);
-                    // Enemy.transform.position = new Vector3(x * scale, 0, z * scale);
+                    // Instantiate(Masjid, new Vector3((x * scale) + 1, 7, (z * scale) + 1), Quaternion.identity);
                 }
                 else if (EnemySet)
                 {
@@ -147,6 +167,32 @@ public class MazeLogic : MonoBehaviour
             }
         }
     }
+    public virtual void PlaceMasjid()
+    {
+        bool MasjidSet = false;
+        for (int i = 0; i < depth; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                int x = Random.Range(0, width);
+                int z = Random.Range(0, depth);
+                if (map[x, z] == 2 && !MasjidSet)
+                {
+                    Debug.Log("placing masjid");
+                    MasjidSet = true;
+                    // Quaternion rotation = Quaternion.Euler(-90f, 0f, 0f);
+                    GameObject masjid2 = Instantiate(Masjid, new Vector3(x * scale, 7, z * scale), Quaternion.identity);
+                    masjid2.transform.localScale = new Vector3(60, 60, 60);
+                }
+                else if (MasjidSet)
+                {
+                    Debug.Log("already placing masjid");
+                    return;
+                }
+            }
+        }
+    }
+
 
     public virtual void PlaceGoblin()
     {
@@ -173,22 +219,5 @@ public class MazeLogic : MonoBehaviour
         }
     }
 
-    public virtual void AddRooms(int count, int minSize, int maxSize)
-    {
-        for (int c = 0; c < count; c++)
-        {
-            int startX = Random.Range(3, width - 3);
-            int startZ = Random.Range(3, depth - 3);
-            int roomWidth = Random.Range(minSize, maxSize);
-            int roomDepth = Random.Range(minSize, maxSize);
 
-            for (int x = startX; x < width - 3 && x < startX + roomWidth; x++)
-            {
-                for (int z = startZ; z < depth - 3 && z < startZ + roomDepth; z++)
-                {
-                    map[x, z] = 2;
-                }
-            }
-        }
-    }
 }
